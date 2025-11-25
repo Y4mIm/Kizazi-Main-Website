@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 import { SectionId } from '../types';
 import Logo from './Logo';
 
@@ -31,85 +32,115 @@ const Navigation: React.FC = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 flex justify-center pt-4 px-4`}>
-      <div className={`
-        relative w-full max-w-5xl transition-all duration-500 rounded-2xl
-        ${scrolled 
-          ? 'bg-white/80 backdrop-blur-xl shadow-2xl border border-white/40 py-2 px-6' 
-          : 'bg-transparent py-4 px-4'}
-      `}>
-        <div className="flex justify-between items-center">
-          {/* Logo */}
-          <div className="cursor-pointer transform hover:scale-105 transition-transform duration-300 origin-left" onClick={() => scrollTo(SectionId.HOME)}>
-            <Logo scrolled={scrolled || isOpen} className="scale-90 sm:scale-100" />
-          </div>
+    <>
+      <nav 
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out border-b ${
+          scrolled 
+            ? 'bg-navy-950/95 backdrop-blur-md border-white/10 py-0 shadow-xl' 
+            : 'bg-transparent border-transparent py-4'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="flex justify-between items-center h-20">
+            
+            {/* Logo Area */}
+            <div 
+              className="cursor-pointer flex-shrink-0 z-50 relative" 
+              onClick={() => scrollTo(SectionId.HOME)}
+            >
+              <Logo scrolled={scrolled || isOpen} className="transform transition-transform hover:scale-105" />
+            </div>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-1">
-            {navLinks.map((link) => (
+            {/* Desktop Navigation - Editorial Style */}
+            <div className="hidden lg:flex items-center space-x-12">
+              <div className="flex space-x-8">
+                {navLinks.map((link) => (
+                  <button
+                    key={link.name}
+                    onClick={() => scrollTo(link.id)}
+                    className="relative group py-2"
+                  >
+                    <span className={`text-xs font-bold tracking-[0.2em] uppercase font-display transition-colors duration-300 ${
+                      scrolled ? 'text-slate-300 group-hover:text-blue-400' : 'text-slate-200 group-hover:text-white'
+                    }`}>
+                      {link.name}
+                    </span>
+                    {/* Technical underline effect */}
+                    <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
+                  </button>
+                ))}
+              </div>
+
+              {/* Action Button - Sharp & geometric */}
+              <div className="pl-8 border-l border-white/10">
+                <button 
+                  onClick={() => scrollTo(SectionId.CONTACT)}
+                  className={`
+                    flex items-center space-x-2 px-6 py-3 text-xs font-bold uppercase tracking-widest transition-all duration-300 border
+                    ${scrolled
+                      ? 'border-blue-600 text-blue-500 hover:bg-blue-600 hover:text-white'
+                      : 'border-white/30 text-white hover:bg-white hover:text-navy-950'}
+                  `}
+                >
+                  <span>Book Consultation</span>
+                  <ArrowRight size={14} />
+                </button>
+              </div>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div className="lg:hidden flex items-center z-50">
+              <button 
+                onClick={() => setIsOpen(!isOpen)} 
+                className={`p-2 transition-colors duration-300 ${
+                  isOpen ? 'text-white' : (scrolled ? 'text-white' : 'text-white')
+                }`}
+                aria-label="Toggle menu"
+              >
+                {isOpen ? <X size={32} strokeWidth={1.5} /> : <Menu size={32} strokeWidth={1.5} />}
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Full Screen Mobile Overlay - "App" Feel */}
+      <div 
+        className={`fixed inset-0 z-40 bg-navy-950 transition-transform duration-500 cubic-bezier(0.7, 0, 0.3, 1) ${
+          isOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        <div className="h-full flex flex-col justify-center px-8 relative overflow-hidden">
+          {/* Background decoration */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+
+          <div className="space-y-6">
+            <span className="text-blue-500 text-xs font-mono mb-4 block tracking-widest">NAVIGATION</span>
+            {navLinks.map((link, idx) => (
               <button
                 key={link.name}
                 onClick={() => scrollTo(link.id)}
-                className={`
-                  px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 relative group
-                  ${scrolled 
-                    ? 'text-slate-600 hover:text-blue-600' 
-                    : 'text-slate-200 hover:text-white'}
-                `}
+                className="block text-4xl sm:text-5xl font-display font-bold text-white hover:text-blue-500 transition-colors text-left"
+                style={{ transitionDelay: `${idx * 50}ms` }}
               >
                 {link.name}
-                <span className={`absolute bottom-1 left-1/2 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-1/2 group-hover:-translate-x-1/2`}></span>
               </button>
             ))}
-            <button 
-              onClick={() => scrollTo(SectionId.CONTACT)}
-              className={`
-                ml-4 px-6 py-2.5 rounded-full text-sm font-bold transition-all transform hover:scale-105 shadow-lg
-                ${scrolled
-                  ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-blue-600/30'
-                  : 'bg-white text-blue-900 hover:bg-blue-50 shadow-white/20'}
-              `}
-            >
-              Get Started
-            </button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
-            <button 
-              onClick={() => setIsOpen(!isOpen)} 
-              className={`p-2 rounded-lg transition-colors ${scrolled ? 'text-slate-800 hover:bg-slate-100' : 'text-white hover:bg-white/10'}`}
+          <div className="mt-12 pt-12 border-t border-white/10">
+             <button 
+              onClick={() => scrollTo(SectionId.CONTACT)}
+              className="w-full py-4 bg-blue-600 text-white font-bold text-lg tracking-widest uppercase hover:bg-blue-700 transition-colors flex items-center justify-center space-x-3"
             >
-              {isOpen ? <X size={24} className="text-slate-800" /> : <Menu size={24} />}
+              <span>Book Consultation</span>
+              <ArrowRight size={20} />
             </button>
           </div>
         </div>
       </div>
-
-      {/* Mobile Menu Overlay */}
-      {isOpen && (
-        <div className="absolute top-24 left-4 right-4 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-100 animate-in slide-in-from-top-5 z-40 overflow-hidden">
-          <div className="flex flex-col p-2">
-            {navLinks.map((link) => (
-              <button
-                key={link.name}
-                onClick={() => scrollTo(link.id)}
-                className="text-left px-6 py-4 text-slate-800 font-medium hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-colors"
-              >
-                {link.name}
-              </button>
-            ))}
-            <div className="h-px bg-gray-100 my-2 mx-4"></div>
-            <button 
-              onClick={() => scrollTo(SectionId.CONTACT)}
-              className="mx-4 my-2 bg-blue-600 text-white py-3 rounded-xl font-bold text-center shadow-lg shadow-blue-600/20"
-            >
-              Start Your Project
-            </button>
-          </div>
-        </div>
-      )}
-    </nav>
+    </>
   );
 };
 

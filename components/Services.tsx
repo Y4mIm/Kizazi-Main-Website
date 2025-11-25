@@ -2,7 +2,7 @@ import React from 'react';
 import { Cpu, Terminal, Signal, Lightbulb, ArrowRight } from 'lucide-react';
 import { SectionId, ServiceItem } from '../types';
 import RevealOnScroll from './RevealOnScroll';
-import { TechWeavePattern } from './AfricanPatterns';
+import { MudclothDashPattern } from './AfricanPatterns';
 
 const services: ServiceItem[] = [
   {
@@ -34,7 +34,7 @@ const services: ServiceItem[] = [
 const Services: React.FC = () => {
   return (
     <section id={SectionId.SERVICES} className="py-24 bg-navy-50 relative overflow-hidden">
-      <TechWeavePattern opacity="0.02" color="#0a192f" />
+      <MudclothDashPattern opacity="0.04" color="#0a192f" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <RevealOnScroll>
@@ -61,9 +61,9 @@ const Services: React.FC = () => {
                   <service.icon size={24} strokeWidth={1.5} />
                 </div>
                 
-                <h4 className="text-lg font-bold text-navy-900 mb-3 font-display">
+                <h3 className="text-lg font-bold text-navy-900 mb-3 font-display">
                   {service.title}
-                </h4>
+                </h3>
                 
                 <p className="text-gray-500 mb-6 text-sm leading-relaxed flex-grow">
                   {service.description}

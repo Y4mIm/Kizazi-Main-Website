@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
   <head>
@@ -6,6 +7,8 @@
     <title>Kizazi Technologies - Innovations for Generations</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+      window.process = { env: { NODE_ENV: 'development' } }; // Polyfill for browser preview
+      
       tailwind.config = {
         theme: {
           extend: {
@@ -63,13 +66,15 @@
 <script type="importmap">
 {
   "imports": {
-    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react": "https://aistudiocdn.com/react@18.3.1",
+    "react-dom/client": "https://aistudiocdn.com/react-dom@18.3.1",
+    "react-dom": "https://aistudiocdn.com/react-dom@18.3.1",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@0.344.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@1.30.0",
+    "vite": "https://aistudiocdn.com/vite@5.2.0",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@4.2.1",
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
-    "vite": "https://aistudiocdn.com/vite@^7.2.4",
-    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1"
+    "react/": "https://aistudiocdn.com/react@^19.2.0/"
   }
 }
 </script>

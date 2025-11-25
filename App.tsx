@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { MapPin, Mail, Phone, Twitter, Facebook, Instagram, Linkedin, CheckCircle, Zap, ShieldCheck, TrendingUp, Leaf, Award, UserCheck, Target, ArrowRight, Star, Quote, Heart } from 'lucide-react';
 import Navigation from './components/Navigation';
@@ -72,7 +71,7 @@ const App: React.FC = () => {
             <div className="flex items-center justify-center space-x-4 mb-8 opacity-90">
               <div className="h-px w-8 sm:w-16 bg-blue-400"></div>
               <span className="text-blue-200 font-sans text-xs sm:text-sm tracking-[0.2em] uppercase font-semibold">
-                Kizazi Technologies
+                Future of Technology
               </span>
               <div className="h-px w-8 sm:w-16 bg-blue-400"></div>
             </div>
@@ -95,7 +94,7 @@ const App: React.FC = () => {
           <RevealOnScroll delay={500}>
             <div className="flex flex-col sm:flex-row justify-center gap-5 w-full sm:w-auto">
               <a href={`#${SectionId.CONTACT}`} className="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-bold text-lg transition-colors flex items-center justify-center font-display shadow-lg">
-                Start Your Project 
+                Book Consultation 
                 <ArrowRight size={20} className="ml-2" />
               </a>
               <a href={`#${SectionId.PORTFOLIO}`} className="px-8 py-4 bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 text-white rounded-lg font-bold text-lg transition-colors flex items-center justify-center font-display">
@@ -164,7 +163,7 @@ const App: React.FC = () => {
                           <value.icon size={18} />
                         </div>
                         <div>
-                          <h4 className="font-bold text-navy-900 font-display text-sm">{value.title}</h4>
+                          <h3 className="font-bold text-navy-900 font-display text-sm">{value.title}</h3>
                         </div>
                       </div>
                   ))}
@@ -181,7 +180,7 @@ const App: React.FC = () => {
                   <TechWeavePattern opacity="0.03" color="#ffffff" />
                   
                   <Quote className="text-blue-500 mb-4 opacity-40" size={32} />
-                  <h3 className="text-xl font-medium italic mb-6 relative z-10 font-display leading-relaxed">"To position Malawi as a regional leader in advanced technology, innovation, and AI development."</h3>
+                  <p className="text-xl font-medium italic mb-6 relative z-10 font-display leading-relaxed">"To position Malawi as a regional leader in advanced technology, innovation, and AI development."</p>
                   <p className="font-bold text-blue-400 uppercase tracking-widest text-xs font-sans relative z-10">Our Vision</p>
                 </div>
                 
@@ -269,7 +268,7 @@ const App: React.FC = () => {
             <RevealOnScroll delay={200}>
               <div className="group relative h-[350px] rounded-2xl overflow-hidden cursor-pointer bg-navy-900 border border-white/5">
                 <img 
-                  src="https://images.unsplash.com/photo-1595841696677-6489ff3f8cd1?auto=format&fit=crop&w=800&q=80" 
+                  src="https://images.unsplash.com/photo-1628126235206-5260b9ea6441?auto=format&fit=crop&w=800&q=80" 
                   alt="AgriSmart IoT - African Farmer" 
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-60 group-hover:opacity-40"
                   loading="lazy"
@@ -327,8 +326,8 @@ const App: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <RevealOnScroll>
              <div className="text-center mb-16">
-               <h2 className="text-3xl font-bold text-white mb-4 font-display">Get In Touch</h2>
-               <p className="text-blue-200">Let's build something extraordinary together.</p>
+               <h2 className="text-3xl font-bold text-white mb-4 font-display">Let's Build Your Vision</h2>
+               <p className="text-blue-200">Partner with Kizazi Technologies to bring your ideas to life.</p>
              </div>
           </RevealOnScroll>
 
@@ -392,7 +391,7 @@ const App: React.FC = () => {
               <div className="bg-white p-8 rounded-2xl shadow-xl relative">
                 <AfroGeometricCorner className="-top-3 -left-3 w-8 h-8" color="#0060af" />
                 <form action="https://formsubmit.co/kizazitechhnologies@gmail.com" method="POST" className="space-y-5">
-                  <input type="hidden" name="_subject" value="New Inquiry from Website" />
+                  <input type="hidden" name="_subject" value="New Consultation Request" />
                   <input type="hidden" name="_captcha" value="false" />
                   
                   <div className="grid grid-cols-2 gap-5">
@@ -412,12 +411,23 @@ const App: React.FC = () => {
                   </div>
 
                   <div>
+                     <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">Service Interest</label>
+                     <select id="service" name="service" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none text-gray-700">
+                        <option value="General Inquiry">General Inquiry</option>
+                        <option value="AI & Automation">AI & Automation</option>
+                        <option value="Software Development">Software & App Development</option>
+                        <option value="Digital Transformation">Digital Transformation / IT</option>
+                        <option value="Innovation/Training">Innovation & Training</option>
+                     </select>
+                  </div>
+
+                  <div>
                     <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                    <textarea id="message" name="message" required rows={4} className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none"></textarea>
+                    <textarea id="message" name="message" required rows={4} className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none" placeholder="Tell us about your project or requirements..."></textarea>
                   </div>
 
                   <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-lg shadow-md transition-colors font-display">
-                    Send Message
+                    Request Consultation
                   </button>
                 </form>
               </div>
@@ -438,7 +448,7 @@ const App: React.FC = () => {
                 </p>
              </div>
              <div>
-               <h4 className="text-white font-bold mb-4 font-display text-sm uppercase tracking-wider">Company</h4>
+               <h3 className="text-white font-bold mb-4 font-display text-sm uppercase tracking-wider">Company</h3>
                <ul className="space-y-3 text-sm text-slate-400">
                  <li><a href={`#${SectionId.ABOUT}`} className="hover:text-blue-400 transition-colors">About Us</a></li>
                  <li><a href={`#${SectionId.SERVICES}`} className="hover:text-blue-400 transition-colors">Services</a></li>
@@ -452,7 +462,7 @@ const App: React.FC = () => {
                </ul>
              </div>
              <div>
-                <h4 className="text-white font-bold mb-4 font-display text-sm uppercase tracking-wider">Newsletter</h4>
+                <h3 className="text-white font-bold mb-4 font-display text-sm uppercase tracking-wider">Newsletter</h3>
                 <p className="text-xs text-slate-500 mb-4">Subscribe to get the latest tech trends from Malawi.</p>
                 <form className="flex" onSubmit={(e) => e.preventDefault()}>
                   <input type="email" placeholder="Enter email" className="bg-navy-900 text-white px-4 py-2 rounded-l-lg text-sm w-full border border-navy-800 focus:outline-none focus:border-blue-600" />
